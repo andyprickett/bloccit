@@ -1,6 +1,7 @@
 const request = require("request");
 const server = require("../../src/server");
 const base = "http://localhost:3000/topics/";
+
 const sequelize = require("../../src/db/models/index").sequelize;
 const Topic = require("../../src/db/models").Topic;
 
@@ -8,6 +9,7 @@ describe("routes : topics", () => {
 
   beforeEach((done) => {
     this.topic;
+    
     sequelize.sync({force: true}).then((res) => {
 
       Topic.create({
@@ -75,6 +77,23 @@ describe("routes : topics", () => {
         expect(err).toBeNull();
         expect(body).toContain("JS Frameworks");
         done();
+      });
+    });
+  });
+  describe("POST /topics/:id/destroy", () => {
+    it("should delete the topic with the associated ID", (done) => {
+      Topic.all()
+      .then((topics) => {
+        const topicCountBeforeDelete = topics.length;
+        expect(topicCountBeforeDelete).toBe(1);
+        request.post(`${base}${this.topic.id}/destroy`, (err, res, body) => {
+          Topic.all()
+          .then((topics) => {
+            expect(err).toBeNull();
+            expect(topics.length).toBe(topicCountBeforeDelete - 1);
+            done();
+          });
+        });
       });
     });
   });
