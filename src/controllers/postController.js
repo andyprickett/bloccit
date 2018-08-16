@@ -2,7 +2,7 @@ const postQueries = require("../db/queries.posts.js");
 
 module.exports = {
   new(req, res, next) {
-    res.render("posts/new", {title: "Welcome to Bloccit", topicId: req.params.topicId});
+    res.render("posts/new", {topicId: req.params.topicId});
   },
   create(req, res, next) {
     let newPost = {
@@ -23,7 +23,7 @@ module.exports = {
       if(err || post == null) {
         res.redirect(404, "/");
       } else {
-        res.render("posts/show", {title: "Welcome to Bloccit", post});
+        res.render("posts/show", {post});
       }
     });
   },
@@ -41,7 +41,7 @@ module.exports = {
       if(err || post == null) {
         res.redirect(404, "/");
       } else {
-        res.render("posts/edit", {title: "Welcome to Bloccit", post});
+        res.render("posts/edit", {post});
       }
     });
   },

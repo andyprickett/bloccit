@@ -4,14 +4,14 @@ module.exports = {
   index(req, res, next) {
     topicQueries.getAllTopics((err, topics) => {
       if(err) {
-        res.redirect(500, "static/index", {title: "Welcome to Bloccit"});
+        res.redirect(500, "static/index");
       } else {
-        res.render("topics/index", {title: "Welcome to Bloccit", topics});
+        res.render("topics/index", {topics});
       }
     });
   },
   new(req, res, next) {
-    res.render("topics/new", {title: "Welcome to Bloccit"});
+    res.render("topics/new");
   },
   create(req, res, next) {
     let newTopic = {
@@ -31,7 +31,7 @@ module.exports = {
       if(err || topic == null) {
         res.redirect(404, "/");
       } else {
-        res.render("topics/show", {title: "Welcome to Bloccit", topic});
+        res.render("topics/show", {topic});
       }
     });
   },
@@ -49,7 +49,7 @@ module.exports = {
       if(err || topic == null) {
         res.redirect(404, "/");
       } else {
-        res.render("topics/edit", {title: "Welcome to Bloccit", topic});
+        res.render("topics/edit", {topic});
       }
     });
   },
