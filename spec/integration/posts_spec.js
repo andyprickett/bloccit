@@ -39,7 +39,7 @@ describe("routes : posts", () => {
         })
         .then((topic) => {
           this.topic = topic;
-          this.post = posts[0];
+          this.post = topic.posts[0];
           done();
         })
         .catch((err) => {
