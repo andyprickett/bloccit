@@ -47,7 +47,7 @@ describe("Post", () => {
   });
 
   describe("#create()", () => {
-    it("should create a post object with a title, body, and assigned topic", (done) => {
+    it("should create a post object with a title, body, and assigned topic and user", (done) => {
       Post.create({
         title: "Pros of Cyrosleep during the long journey",
         body: "1. Not having to answer the 'are we there yet?' question.",

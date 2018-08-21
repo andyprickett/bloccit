@@ -44,8 +44,11 @@ describe("routes : topics", () => {
             userId: user.id,
             email: user.email
           }
-        });
-        done();
+        },
+          (err, res, body) => {
+            done();
+          }
+        );
       });
     });
     
@@ -160,8 +163,11 @@ describe("routes : topics", () => {
         form: {
           role: "member"
         }
-      });
-      done();
+      },
+        (err, res, body) => {
+          done();
+        }
+      );
     });
 
     describe("GET /topics", () => {
