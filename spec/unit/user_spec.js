@@ -30,7 +30,7 @@ describe("User", () => {
         done();
       });
     });
-    it("should not create a user with invalid email or password", (done) => {
+    it("should NOT create a user with invalid email or password", (done) => {
       User.create({
         email: "It's-a me, Mario!",
         password: "1234567890"

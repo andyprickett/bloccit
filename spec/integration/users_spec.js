@@ -50,15 +50,14 @@ describe("routes : users", () => {
       });
     });
     it("should not create a new user with invalid attributes and redirect", (done) => {
-      request.post(
-        {
-          url: base,
-          form: {
-            email: "no",
-            password: "123456789"
-          }
-        },
-        (err, res, body) => {
+      const options = {
+        url: base,
+        form: {
+          email: "no",
+          password: "123456789"
+        }
+      }
+      request.post(options, (err, res, body) => {
           User.findOne({where: {email: "no"}})
           .then((user) => {
             expect(user).toBeNull();
