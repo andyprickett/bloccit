@@ -42,7 +42,9 @@ module.exports = {
   show(req, res, next) {
     topicQueries.getTopic(req.params.id, (err, topic) => {
       if(err || topic == null) {
-        res.redirect(404, "/");
+        res.render("topics/show", {topic});
+
+        //res.redirect(404, "/");
       } else {
         res.render("topics/show", {topic});
       }
