@@ -55,23 +55,8 @@ describe("routes : users", () => {
         form: {
           email: "no",
           password: "123456789"
-<<<<<<< HEAD
         }
-      }
-      request.post(options, (err, res, body) => {
-          User.findOne({where: {email: "no"}})
-          .then((user) => {
-            expect(user).toBeNull();
-            done();
-          })
-          .catch((err) => {
-            console.log(err);
-            done();
-          });
-=======
->>>>>>> assignment-12-authorization
-        }
-      }
+      };
       request.post(options, (err, res, body) => {
         User.findOne({where: {email: "no"}})
         .then((user) => {
