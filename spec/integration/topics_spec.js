@@ -165,6 +165,7 @@ describe("routes : topics", () => {
           expect(err).toBeNull();
           Topic.findOne({
             where: { id: this.topic.id }
+            //where: {id:1}
           })
           .then((topic) => {
             expect(topic.title).toBe("JavaScript Frameworks");
@@ -280,6 +281,7 @@ describe("routes : topics", () => {
           expect(err).toBeNull();
           Topic.findOne({
             where: { id: this.topic.id }
+            //where: { id:1 }
           })
           .then((topic) => {
             expect(topic.title).toBe("JS Frameworks"); // confirm title is unchanged
