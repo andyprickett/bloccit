@@ -24,6 +24,7 @@ module.exports = {
     })
     .catch((err) => {
       callback(err);
+      //console.log(err);
     });
   },
   addTopic(newTopic, callback) {
