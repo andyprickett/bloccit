@@ -324,7 +324,7 @@ describe("routes : posts", () => {
         role: "member"
       })
       .then((user) => {
-        console.log(user.id) // should be 2
+        //console.log(user.id) // should be 2
         request.get({ // mock authentication
           url: "http://localhost:3000/auth/fake",
           form: {
