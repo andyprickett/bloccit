@@ -34,6 +34,7 @@ module.exports = {
       ]
     })
     .then((post) => {
+      console.log("getPost called!")
       callback(null, post);
     })
     .catch((err) => {

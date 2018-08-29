@@ -43,8 +43,22 @@ module.exports = (sequelize, DataTypes) => {
   Post.prototype.getPoints = function() {
     if(this.votes.length === 0) return 0;
     return this.votes
-      .map((vote) => { return vote.value })
+      .map((vote) => { return vote.value; })
       .reduce((prev, next) => { return prev + next });
-  };
+  }
+  Post.prototype.hasUpvoteFor = function(userId) {
+    const foundUpvote = this.votes.filter((vote) => {
+      //console.log(vote.value, vote.userId)
+      return ((vote.value === 1) && (vote.userId === userId)) 
+    });
+    return foundUpvote.length === 1;    
+  }
+  Post.prototype.hasDownvoteFor = function(userId) {
+    const foundDownvote = this.votes.filter((vote) => {
+      //console.log(vote.value, vote.userId)
+      return ((vote.value === -1) && (vote.userId === userId)) 
+    });
+    return foundDownvote.length === 1;    
+  }
   return Post;
 };
