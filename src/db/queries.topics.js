@@ -46,8 +46,8 @@ module.exports = {
 
       if(authorized) {
         topic.destroy()
-        .then((res) => {
-          callback(null, topic);
+        .then((deletedRecordsCount) => {
+          callback(null, deletedRecordsCount);
         });
       } else {
         req.flash("notice", "You are not authorized to do that.");

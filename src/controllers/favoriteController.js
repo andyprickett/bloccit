@@ -15,7 +15,7 @@ module.exports = {
   },
   destroy(req, res, next) {
     if(req.user) {
-      favoriteQueries.deleteFavorites(req, (err, favorite) => {
+      favoriteQueries.deleteFavorite(req, (err, deletedRecordsCount) => {
         if(err) {
           req.flash("error", err);
         }

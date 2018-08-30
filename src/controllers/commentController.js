@@ -22,7 +22,7 @@ module.exports = {
     }
   },
   destroy(req, res, next) {
-    commentQueries.deleteComment(req, (err, comment) => {
+    commentQueries.deleteComment(req, (err, deletedRecordsCount) => {
       if(err) {
         res.redirect(err, req.headers.referer);
       } else {

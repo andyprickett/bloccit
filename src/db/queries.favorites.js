@@ -26,12 +26,9 @@ module.exports = {
       }
       const authorized = new Authorizer(req.user, favorite).destroy();
       if(authorized) {
-        Favorite.destroy({ where: { id }})
-        .then((favorite) => {
-          callback(null, favorite);
-        })
-        .catch((err) => {
-          callback(err);
+        Favorite.destroy({ where: { id }}) // <-- this syntax
+        .then((deletedRecordsCount) => {   // <-- will actually return a value for this
+          callback(null, deletedRecordsCount);
         });
       } else {
         req.flash("notice", "You are not authorized to do that.");

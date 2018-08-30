@@ -3,6 +3,7 @@ const Topic = require("./models").Topic;
 const Comment = require("./models").Comment;
 const User = require("./models").User;
 const Vote = require("./models").Vote;
+const Favorite = require("./models").Favorite;
 const Authorizer = require("../policies/application");
 
 module.exports = {
@@ -18,23 +19,12 @@ module.exports = {
   getPost(id, callback) {
     return Post.findById(id, {
       include: [
-        { 
-          model: Comment,
-          as: "comments",
-          include: [
-            { 
-              model: User
-            }
-          ]
-        },
-        { 
-          model: Vote,
-          as: "votes"
-        }
+        { model: Comment, as: "comments", include: [{ model: User }] },
+        { model: Vote, as: "votes" },
+        { model: Favorite, as: "favorites" }
       ]
     })
     .then((post) => {
-      console.log("getPost called!")
       callback(null, post);
     })
     .catch((err) => {
@@ -50,7 +40,7 @@ module.exports = {
       if(authorized) {
         post.destroy()
         .then((deletedRecordsCount) => {
-          callback(null, deletedRecordsCount);
+          callback(null), deletedRecordsCount;
         });
       } else {
         req.flash("notice", "You are not authorized to do that. I could hide the buttons from you in the view, or you could just sign in.");
@@ -76,14 +66,14 @@ module.exports = {
         })
         .then(() => {
           callback(null, post);
-        })
-        .catch((err) => {
-          callback(err);
         });
       } else {
         req.flash("notice", "You are not authorized to do that.");
         callback(403);
       }
+    })
+    .catch((err) => {
+      callback(err);
     });
   }
 }

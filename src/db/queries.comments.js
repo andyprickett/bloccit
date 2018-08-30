@@ -21,12 +21,17 @@ module.exports = {
       const authorized = new Authorizer(req.user, comment).destroy();
 
       if(authorized) {
-        comment.destroy();
-        callback(null, comment)
+        comment.destroy()
+        .then((deletedRecordsCount) => {
+          callback(null, deletedRecordsCount);
+        });
       } else {
         req.flash("notice", "You are not authorized to do that.")
         callback(401)
       }
+    })
+    .catch((err) => {
+      callback(err);
     });
   }
 }
