@@ -40,7 +40,7 @@ module.exports = {
       if(authorized) {
         post.destroy()
         .then((deletedRecordsCount) => {
-          callback(null), deletedRecordsCount;
+          callback(null, deletedRecordsCount);
         });
       } else {
         req.flash("notice", "You are not authorized to do that. I could hide the buttons from you in the view, or you could just sign in.");
