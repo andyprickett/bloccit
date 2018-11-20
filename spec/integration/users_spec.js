@@ -7,6 +7,7 @@ const User = require("../../src/db/models").User;
 const Topic = require("../../src/db/models").Topic;
 const Post = require("../../src/db/models").Post;
 const Comment = require("../../src/db/models").Comment;
+// const Favorite = require("../../src/db/models").Favorite;
 
 describe("routes : users", () => {
 
@@ -88,6 +89,7 @@ describe("routes : users", () => {
 
     beforeEach((done) => {
       this.user;
+      this.topic;
       this.post;
       this.comment;
 
@@ -113,6 +115,7 @@ describe("routes : users", () => {
           }
         })
         .then((topic) => {
+          this.topic = topic;
           this.post = topic.posts[0];
 
           Comment.create({
@@ -136,6 +139,26 @@ describe("routes : users", () => {
       request.get(`${base}${this.user.id}`, (err, res, body) => {
         expect(body).toContain("Snowball Fighting");
         expect(body).toContain("This comment is alright.");
+        done();
+      });
+    });
+    it("should present a list of posts a user has favorited", (done) => {
+      Post.create({
+        title: "Snowman Building",
+        body: "Would you like to build a snowman?",
+        topicId: this.topic.id,
+        userId: this.user.id
+      })
+      .then(() => {
+        request.get(`${base}${this.user.id}`, (err, res, body) => {
+          expect(body).toContain("Favorites");
+          expect(body).toContain("Snowball Fighting"); //the automatically favorited post created in the beforeEach
+          expect(body).toContain("Snowman Building");
+          done();
+        });
+      })
+      .catch((err) => {
+        console.log(err);
         done();
       });
     });
