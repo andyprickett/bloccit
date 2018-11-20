@@ -1,5 +1,5 @@
 {
-  "name": "bloccit",
+  "name": "Topiccit",
   "version": "1.0.0",
   "description": "A Reddit-like application for users to discuss and share content",
   "main": "src/server.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andyprickett/bloccit.git"
+    "url": "git+https://github.com/andyprickett/topiccit.git"
   },
   "author": "Andy Prickett",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/andyprickett/bloccit/issues"
+    "url": "https://github.com/andyprickett/topiccit/issues"
   },
-  "homepage": "https://github.com/andyprickett/bloccit#readme",
+  "homepage": "https://github.com/andyprickett/topiccit#readme",
   "devDependencies": {
     "faker": "~4.1.0",
     "jasmine": "~3.0.0",

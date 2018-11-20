@@ -1,16 +1,12 @@
-# Talkit
+# Topiccit
 
 #### Full-stack web application modelled after Reddit that allows users to create Topics, Posts, Comments, and both Favorite and Upvote/Downvote Posts.
 
 ## Features
 * Public Topics, Posts, and Comments available to be read by any user/visitor.
-* Signed-in user accounts allow creation, updating, and deleting of Posts and Comments, and Voting.
-* Signed-in "Premium" users can create private wikis, and share collaboration on them with other users (including "Standard" users).
-* Private wikis are not exposed to public viewing, or non-collaborator "Standard" users.
-* Wikis can be written in markdown syntax and will render properly.
-* User Signup produces a welcome email to the user.
-* Upgrading to a "Premium" account handled by a pay system.
-* Downgrading user accounts to "Standard" available, and user's private wikis (if any) returned to being pubic.
+* Signed-in user accounts allow creation, updating, and deleting of Posts and Comments, and Favoriting/Voting.
+* Signed-in "admin" users can create Topics.
+* Signed-in user profile lists Posts, Comments, and Favorites of user.
 
 ## Technologies
 * Node backend with Express framework.
@@ -21,22 +17,19 @@
 * Styling (or lack therof) with Bootstrap. Just enough to get things up and running, as the name indicates.
 
 ## Comments and Complications
-This application is based on a project completed for the Bloc Web Developer Track program. It is operational on my local machine, and in a [live deployment on Heroku](https://upedia.herokuapp.com/). There are some problems, however, and some improvements to be made:
+This application is based on a project completed for the Bloc Web Developer Track program. It is operational on my local machine, and in a [live deployment on Heroku](https://topiccit.herokuapp.com/). There are some unfinished features, however, and some improvements to be made:
 
-* The tests do not pass when they are all run at once. Something is amiss in the order of events, and I've yet to track it down.
-* The landing page has "Free Plan" and "Premium Plan" buttons that are intended to go somewhere useful eventually, but currently go nowhere.
-* I intend to add a "markdown live preview" window on the wiki "new" and "edit" pages.
+* There is a "Banner" resource that has been started, but not completed. I intend to implement an image upload feature associated with this.
+* There are "Rule", "Advertisement", and "Flair" resources that have been started, but not completed.
+* Error handling/flash messaging could be more elegant and consistent in some cases.
 * I'm not positive that the project as it stands is robust enough for a true, real-world production deployment.
 
 ## Usage
 I am using this project for learning and experimentation with technologies. If you choose to clone it, please be aware of some things:
 
 * You'll need to create a `.env` file in the root folder of your version of the project, and add a `cookieSecret` variable set to equal a string of your choosing.
-* You'll need to create an account with Stripe, and API keys that you will use in your version of the application, per this guide: [Stripe quickstart](https://stripe.com/docs/quickstart).
-* You'll need to create an account with SendGrid, and an API key that you will use in your version of the project. This includes needing to create a `sendgrid.env` file in the root folder, per this guide: [SendGrid setup](https://app.sendgrid.com/guide/integrate/langs/nodejs).
-* The email sent out to new users will need to be customized by hand with your branding/message.
 * The versions of all packages in `package.json` are carefully restricted. Allowing some of them to update to anything other than bug-fix versions will/may result in breaking changes (I'm lookin' at you Sequelize, express-validator and Request).
 * Create and configure your local databases using the Sequelize CLI and the `src/db/config/congig.json` file.
-* Seed files are included. Run using `sequelize db:seed:all`.
-* Run a test for each resource individually with `npm test spec/(integration || unit)/(test file name)`.
-
+* Some seed files are included. Run using `sequelize db:seed:all`.
+* Run tests with `npm test`.
+* Start the app locally with `npm start`.

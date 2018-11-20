@@ -4,14 +4,14 @@ module.exports = {
   index(req, res, next) {
     flairQueries.getAllFlairs((err, flairs) => {
       if(err) {
-        res.redirect(500, "static/index", {title: "Welcome to Bloccit"});
+        res.redirect(500, "static/index", {title: "Welcome to Topiccit"});
       } else {
-        res.render("flairs/index", {title: "Welcome to Bloccit", flairs});
+        res.render("flairs/index", {title: "Welcome to Topiccit", flairs});
       }
     });
   },
   new(req, res, next) {
-    res.render("flairs/new", {title: "Welcome to Bloccit"});
+    res.render("flairs/new", {title: "Welcome to Topiccit"});
   },
   create(req, res, next) {
     let newFlair = {
@@ -31,7 +31,7 @@ module.exports = {
       if(err || flair == null) {
         res.redirect(404, "/");
       } else {
-        res.render("flairs/show", {title: "Welcome to Bloccit", flair});
+        res.render("flairs/show", {title: "Welcome to Topiccit", flair});
       }
     });
   },
@@ -49,7 +49,7 @@ module.exports = {
       if(err || flair == null) {
         res.redirect(404, "/");
       } else {
-        res.render("flairs/edit", {title: "Welcome to Bloccit", flair});
+        res.render("flairs/edit", {title: "Welcome to Topiccit", flair});
       }
     });
   },

@@ -4,14 +4,14 @@ module.exports = {
   index(req, res, next) {
     advertisementQueries.getAllAdvertisements((err, advertisements) => {
       if(err) {
-        res.redirect(500, "static/index", {title: "Welcome to Bloccit"});
+        res.redirect(500, "static/index", {title: "Welcome to Topiccit"});
       } else {
-        res.render("advertisements/index", {title: "Welcome to Bloccit", advertisements});
+        res.render("advertisements/index", {title: "Welcome to Topiccit", advertisements});
       }
     });
   },
   new(req, res, next) {
-    res.render("advertisements/new", {title: "Welcome to Bloccit"});
+    res.render("advertisements/new", {title: "Welcome to Topiccit"});
   },
   create(req, res, next) {
     let newAdvertisement = {
@@ -31,7 +31,7 @@ module.exports = {
       if(err || advertisement == null) {
         res.redirect(404, "/");
       } else {
-        res.render("advertisements/show", {title: "Welcome to Bloccit", advertisement});
+        res.render("advertisements/show", {title: "Welcome to Topiccit", advertisement});
       }
     });
   },
@@ -49,7 +49,7 @@ module.exports = {
       if(err || advertisement == null) {
         res.redirect(404, "/");
       } else {
-        res.render("advertisements/edit", {title: "Welcome to Bloccit", advertisement})
+        res.render("advertisements/edit", {title: "Welcome to Topiccit", advertisement})
       }
     });
   },
